@@ -47,8 +47,8 @@ namespace gazebo
     // Called by the world update start event
     public: void OnUpdate(const common::UpdateInfo & /*_info*/)
     {
-      const double INFINITY = std::numeric_limits<double>::max();
-      const double CHANGEME = INFINITY;
+      const double INF = std::numeric_limits<double>::max();
+      const double CHANGEME = INF;
 
       // get the end link of the planar robot
       physics::LinkPtr wrist3 = robot->GetLink("ur10::wrist_3");
@@ -61,7 +61,7 @@ namespace gazebo
       // z-axis unchanged (pointing "up and out of the plane")
       math::Pose constant_pose;
       constant_pose.pos = math::Vector3(CHANGEME,CHANGEME,CHANGEME);
-      constant_pose.rot.SetFromAxis(CHANGEME,CHANGEME,CHANGEME);
+      constant_pose.rot.SetFromAxis(CHANGEME,CHANGEME,CHANGEME,CHANGEME);
       math::Matrix4 _w3Tc = ToMatrix(constant_pose);
 
       // TODO: compute the target pose from _0T3 and _3Tc
