@@ -1,0 +1,105 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="planar_robot">
+    <link name="link_1">
+      <pose>0 0 0 0 0 0</pose>
+      <inertial>
+        <mass>1.0</mass>
+        <inertia>
+          <ixx>0.010417</ixx>
+          <iyy>0.33854</iyy>
+          <izz>0.33854</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="link_1-visual">
+        <pose>0 0 0.0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>2 .25 .25</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <link name="link_2">
+      <pose>1.667 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.667</mass>
+        <inertia>
+          <ixx>0.0069581</ixx>
+          <iyy>0.10099</iyy>
+          <izz>0.10099</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="link_2-visual">
+        <pose>0 0 0.0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.33 .25 .25</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <link name="link_3">
+      <pose>2.7625 0 0 0 0 0</pose>
+      <inertial>
+        <mass>0.44444</mass>
+        <inertia>
+          <ixx>0.0046298</ixx>
+          <iyy>0.013457</iyy>
+          <izz>0.013457</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+      <visual name="link_2-visual">
+        <pose>0 0 0.0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.8712 .25 .25</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+    <joint type="revolute" name="joint_1">
+      <pose>-1.0 0 0 0 0 0</pose>
+      <child>link_1</child>
+      <parent>world</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <use_parent_model_frame>false</use_parent_model_frame>
+      </axis>
+    </joint>
+    <joint type="revolute" name="joint_2">
+      <pose>-.83335 0 0 0 0 0</pose>
+      <child>link_2</child>
+      <parent>link_1</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <use_parent_model_frame>false</use_parent_model_frame>
+      </axis>
+    </joint>
+    <joint type="revolute" name="joint_3">
+      <pose>-.4356 0 0 0 0 0</pose>
+      <child>link_3</child>
+      <parent>link_2</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <use_parent_model_frame>false</use_parent_model_frame>
+      </axis>
+    </joint>
+<!--
+    <plugin filename="libwall_following.so" name="WallFollower">
+      <left_joint>left_wheel_hinge</left_joint>
+      <right_joint>right_wheel_hinge</right_joint>
+      <torque>5</torque>
+    </plugin>
+-->
+  </model>
+</sdf>

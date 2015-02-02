@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <physics type="ode">
+      <gravity>0 0 -9.81</gravity>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+<model name="ur10a">
+    <include>
+      <uri>model://ur10</uri>
+      <pose>0 0 2 0 0 0</pose>
+      <plugin name="coord_frame_spatial" filename="libcoord_frame_spatial.so"/>
+    </include>
+
+    <!-- affix the ur10 to the world -->
+    <joint name="affix" type="revolute">
+      <parent>world</parent>
+      <child>ur10a::ur10::base</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <upper>0</upper>
+            <lower>0</lower>
+          </limit>
+        </axis>
+      </joint>
+</model>
+
+  <model name="coord_frame">
+    <static>true</static>
+    <link name="link">
+      <pose>0 0 0 0 0 0</pose>
+      <visual name="x">
+        <pose>0.5 0 0.0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 .05 .05</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+        </material>
+      </visual>
+      <visual name="y">
+        <pose>0 0.5 0.0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>.05 1.0 .05</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0 1 0 1</diffuse>
+        </material>
+      </visual>
+      <visual name="z">
+        <pose>0 0 0.5 0 0 0</pose>
+        <material>
+          <diffuse>0 0 1 1</diffuse>
+        </material>
+        <geometry>
+          <box>
+            <size>.05 .05 1.0</size>
+          </box>
+        </geometry>
+      </visual>
+  </model>
+    
+  </world>
+
+</model>
+
