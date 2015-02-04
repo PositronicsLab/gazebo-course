@@ -37,7 +37,7 @@ namespace gazebo
       planar_robot = model;
 
       // get the widget model
-      widget = model->GetWorld()->GetModel("widget");
+      widget = model->GetWorld()->GetModel("coord_frame");
 
       // Listen to the update event. This event is broadcast every
       // simulation iteration.
