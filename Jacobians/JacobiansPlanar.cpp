@@ -43,7 +43,7 @@ namespace gazebo
     {
     }
 
-    // sets a particular configuration for the arm
+    // sets the arm to a particular configuration 
     private: void SetConfig(Ravelin::VectorNd& q)
     {
       // iterate over all joints
@@ -73,6 +73,11 @@ namespace gazebo
       const math::Vector3 ORIGIN3(0.0, 0.0, 0.0);  // origin of frame 3 
       const unsigned X = 0, Y = 1, THETA = 2, J1 = 0, J2 = 1, J3 = 2;
 
+      // temporary values
+      const double INF = std::numeric_limits<double>::max();
+      const double CHANGEME = INF;
+      const math::Vector3 CHANGEME_VEC3(CHANGEME, CHANGEME, CHANGEME);
+ 
       // the poses (for you, the student, to set) 
       math::Pose _0P0x, _0xP1, _1P1x, _1xP2, _2P2x, _2xP3; 
 
@@ -97,21 +102,22 @@ namespace gazebo
       math::Matrix4 _2xT3 = ToMatrix(_2xP3);
 
       // position of the first joint is always (0,0,0)
-      math::Vector3 z1(0.0, 0.0, 0.0);
+      math::Vector3 p1(0.0, 0.0, 0.0);
 
       // TODO: compute the position of the second joint
-      math::Vector3 z2;
+      math::Vector3 p2 = CHANGEME_VEC3;
 
       // TODO: compute the position of the third joint
-      math::Vector3 z3; 
+      math::Vector3 p3 = CHANGEME_VEC3; 
 
       // TODO: get the position of the manipulator end point
+      math::Vector3 p = CHANGEME_VEC3;
       
       // setup the Jacobian: 3 degrees of freedom x 3 joints
       Ravelin::MatrixNd J(3,3);
-      J(X,J1) = ;  J(Y,J1) = ;  J(THETA,J1) = ;
-      J(X,J2) = ;  J(Y,J2) = ;  J(THETA,J2) = ;
-      J(X,J3) = ;  J(Y,J3) = ;  J(THETA,J3) = ;
+      J(X,J1) = CHANGEME;  J(Y,J1) = CHANGEME;  J(THETA,J1) = CHANGEME;
+      J(X,J2) = CHANGEME;  J(Y,J2) = CHANGEME;  J(THETA,J2) = CHANGEME;
+      J(X,J3) = CHANGEME;  J(Y,J3) = CHANGEME;  J(THETA,J3) = CHANGEME;
 
       return J;
     }
@@ -155,49 +161,49 @@ namespace gazebo
       // compute the Jacobian for the next set of joint angles
       theta[0] = 0.0;  theta[1] = 0.0;  theta[2] = M_PI_2;
       SetConfig(theta);
-      Ravelin::MatrixNd J = CalcJacobian(theta[0], theta[1], theta[2]);      
+      J = CalcJacobian(theta[0], theta[1], theta[2]);      
       std::cout << "joint angles: " << theta << std::endl;
       std::cout << "Jacobian: " << std::endl << J;
 
       // compute the Jacobian for the next set of joint angles
       theta[0] = 0.0;  theta[1] = M_PI_2;  theta[2] = 0.0;
       SetConfig(theta);
-      Ravelin::MatrixNd J = CalcJacobian(theta[0], theta[1], theta[2]);      
+      J = CalcJacobian(theta[0], theta[1], theta[2]);      
       std::cout << "joint angles: " << theta << std::endl;
       std::cout << "Jacobian: " << std::endl << J;
 
       // compute the Jacobian for the next set of joint angles
       theta[0] = 0.0;  theta[1] = M_PI_2;  theta[2] = M_PI_2;
       SetConfig(theta);
-      Ravelin::MatrixNd J = CalcJacobian(theta[0], theta[1], theta[2]);      
+      J = CalcJacobian(theta[0], theta[1], theta[2]);      
       std::cout << "joint angles: " << theta << std::endl;
       std::cout << "Jacobian: " << std::endl << J;
 
       // compute the Jacobian for the next set of joint angles
       theta[0] = M_PI_2;  theta[1] = 0.0;  theta[2] = 0.0;
       SetConfig(theta);
-      Ravelin::MatrixNd J = CalcJacobian(theta[0], theta[1], theta[2]);      
+      J = CalcJacobian(theta[0], theta[1], theta[2]);      
       std::cout << "joint angles: " << theta << std::endl;
       std::cout << "Jacobian: " << std::endl << J;
 
       // compute the Jacobian for the next set of joint angles
       theta[0] = M_PI_2;  theta[1] = 0.0;  theta[2] = M_PI_2;
       SetConfig(theta);
-      Ravelin::MatrixNd J = CalcJacobian(theta[0], theta[1], theta[2]);      
+      J = CalcJacobian(theta[0], theta[1], theta[2]);      
       std::cout << "joint angles: " << theta << std::endl;
       std::cout << "Jacobian: " << std::endl << J;
 
       // compute the Jacobian for the next set of joint angles
       theta[0] = M_PI_2;  theta[1] = M_PI_2;  theta[2] = 0.0;
       SetConfig(theta);
-      Ravelin::MatrixNd J = CalcJacobian(theta[0], theta[1], theta[2]);      
+      J = CalcJacobian(theta[0], theta[1], theta[2]);      
       std::cout << "joint angles: " << theta << std::endl;
       std::cout << "Jacobian: " << std::endl << J;
 
       // compute the Jacobian for the next set of joint angles
       theta[0] = M_PI_2;  theta[1] = M_PI_2;  theta[2] = M_PI_2;
       SetConfig(theta);
-      Ravelin::MatrixNd J = CalcJacobian(theta[0], theta[1], theta[2]);      
+      J = CalcJacobian(theta[0], theta[1], theta[2]);      
       std::cout << "joint angles: " << theta << std::endl;
       std::cout << "Jacobian: " << std::endl << J;
 

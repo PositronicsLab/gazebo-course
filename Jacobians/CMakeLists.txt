@@ -12,7 +12,5 @@ include_directories(${GAZEBO_INCLUDE_DIRS})
 link_directories(${GAZEBO_LIBRARY_DIRS})
 
 add_library(JacobiansPlanar SHARED JacobiansPlanar.cpp)
-add_library(JacobiansSpatial SHARED JacobiansSpatial.cpp)
 target_link_libraries(JacobiansPlanar Ravelin ${GAZEBO_LIBRARIES} ${Boost_LIBRARIES})
-target_link_libraries(JacobiansSpatial Ravelin ${GAZEBO_LIBRARIES} ${Boost_LIBRARIES})
 
