@@ -115,9 +115,9 @@ namespace gazebo
       
       // setup the Jacobian: 3 degrees of freedom x 3 joints
       Ravelin::MatrixNd J(3,3);
-      J(X,J1) = CHANGEME;  J(Y,J1) = CHANGEME;  J(THETA,J1) = CHANGEME;
-      J(X,J2) = CHANGEME;  J(Y,J2) = CHANGEME;  J(THETA,J2) = CHANGEME;
-      J(X,J3) = CHANGEME;  J(Y,J3) = CHANGEME;  J(THETA,J3) = CHANGEME;
+      J(X,J1) = CHANGEME;     J(X,J2) = CHANGEME;     J(X,J3) = CHANGEME;
+      J(Y,J1) = CHANGEME;     J(Y,J2) = CHANGEME;     J(Y,J3) = CHANGEME;
+      J(THETA,J1) = CHANGEME; J(THETA,J2) = CHANGEME; J(THETA,J3) = CHANGEME;
 
       return J;
     }
