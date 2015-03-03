@@ -16,7 +16,7 @@
 namespace gazebo
 {
   // converts a Pose to a Gazebo Matrix4
-  math::Matrix4 toMatrix(const math::Pose& p)
+  math::Matrix4 ToMatrix(const math::Pose& p)
   {
     math::Matrix3 m = p.rot.GetAsMatrix3();
     math::Matrix4 T;
@@ -157,8 +157,8 @@ namespace gazebo
       const double CHANGEME = INFINITY;
 
       // get the transformation matrices for xcurrent and xdes
-      math::Matrix4 Tcurrent = toMatrix(xcurrent); 
-      math::Matrix4 Tdes = toMatrix(xdes); 
+      math::Matrix4 Tcurrent = ToMatrix(xcurrent); 
+      math::Matrix4 Tdes = ToMatrix(xdes); 
 
       // TODO: get the angles of rotation about z from Tcurrent and Tdes
 
