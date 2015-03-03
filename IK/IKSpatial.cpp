@@ -274,7 +274,7 @@ namespace gazebo
        theta[i] = _j[i]->GetAngle(0).Radian();
 
       // initialize dq2
-      double dq2[6];
+      Ravelin::VectorNd dq2(6);
 
       // set the number of iterations and restarts 
       unsigned iter = 0, restarts = 0;
