@@ -48,30 +48,9 @@ namespace gazebo
     {
     }
 
+    // NOTE: this has been hacked to deal with the Gazebo model 
     // gets the number of degrees-of-freedom of a model in Gazebo
-    private: unsigned nDOF(physics::ModelPtr model)
-    {
-      unsigned ndof = 0;
-
-      // iterate over all joints
-      for (unsigned i=0, k=0; i< model->GetJoints().size(); i++)
-      {
-        physics::JointPtr joint = model->GetJoints()[i];
-
-        // iterate over all degrees-of-freedom in the joint
-        for (unsigned j=0; j< joint->GetAngleCount(); j++)
-        {
-          // make sure that the joint is active
-          if (joint->GetLowerLimit(j) < joint->GetUpperLimit(j))
-          {
-            k++;
-            ndof++;
-          }
-        }
-      }
-
-      return ndof;
-    }
+    private: unsigned nDOF(physics::ModelPtr model) { return 6; }
 
     // computes forward kinematics for the robot
     private: math::Pose FKin(double q[6])
@@ -80,20 +59,10 @@ namespace gazebo
       physics::ModelState ms(_model);
 
       // iterate over all joints
-      for (unsigned i=0, k=0; i< _model->GetJoints().size(); i++)
+      for (unsigned i=0; i< nDOF(_model); i++)
       {
-        physics::JointPtr joint = _model->GetJoints()[i];
-
-        // iterate over all degrees-of-freedom in the joint
-        for (unsigned j=0; j< joint->GetAngleCount(); j++)
-        {
-          // make sure that the joint is active
-          if (joint->GetLowerLimit(j) >= joint->GetUpperLimit(j))
-            continue;
-
-          // update the joint position by DQ
-          joint->SetAngle(j, q[k]); 
-        }
+        physics::JointPtr joint = _j[i];
+        joint->SetAngle(0, q[i]); 
       }
 
       // get the end link of the industrial robot
@@ -123,12 +92,12 @@ namespace gazebo
 
       // get the joints
       const unsigned NJOINTS = 6;
-      _j[0] = model->GetJoint("shoulder_pan");
-      _j[1] = model->GetJoint("shoulder_lift");
-      _j[2] = model->GetJoint("elbow");
-      _j[3] = model->GetJoint("wrist_1");
-      _j[4] = model->GetJoint("wrist_2");
-      _j[5] = model->GetJoint("wrist_3");
+      _j[0] = model->GetJoint("ur10::shoulder_pan");
+      _j[1] = model->GetJoint("ur10::shoulder_lift");
+      _j[2] = model->GetJoint("ur10::elbow");
+      _j[3] = model->GetJoint("ur10::wrist_1");
+      _j[4] = model->GetJoint("ur10::wrist_2");
+      _j[5] = model->GetJoint("ur10::wrist_3");
 
       // get the joint angles and setup _qdes
       _qdes.resize(NJOINTS);      
@@ -193,20 +162,12 @@ namespace gazebo
       physics::ModelState ms(_model);
 
       // set the current state of the model
-      for (unsigned i=0, k=0; i< _model->GetJoints().size(); i++)
+      for (unsigned i=0; i< nDOF(_model); i++)
       {
-        physics::JointPtr joint = _model->GetJoints()[i];
+        physics::JointPtr joint = _j[i];
 
-        // iterate over all degrees-of-freedom in the joint
-        for (unsigned j=0; j< joint->GetAngleCount(); j++)
-        {
-          // make sure that the joint is active
-          if (joint->GetLowerLimit(j) >= joint->GetUpperLimit(j))
-            continue;
-
-          // update the joint position by DQ
-          joint->SetAngle(j, q[k]); 
-        }
+        // update the joint position by DQ
+        joint->SetAngle(0, q[i]); 
       }
 
       // get the end link of the industrial robot
