@@ -296,7 +296,7 @@ namespace gazebo
 
         // if there's hardly any error, quit
         const double DX_NORM = dx.norm();
-        if (DX_NORM < LOCAL_MIN_TOL)
+        if (DX_NORM < DX_TOL)
           break;
 
         // record smallest dx
