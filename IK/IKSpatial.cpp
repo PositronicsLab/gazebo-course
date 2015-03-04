@@ -97,7 +97,7 @@ namespace gazebo
       }
 
       // get the end link of the industrial robot
-      physics::LinkPtr wrist3 = _model->GetLink("ur10::wrist_3");
+      physics::LinkPtr wrist3 = _model->GetLink("ur10a::ur10::wrist_3");
 
       // get the new point on the link and the new orientation of the link
       math::Pose x = wrist3->GetWorldCoGPose();
@@ -210,7 +210,7 @@ namespace gazebo
       }
 
       // get the end link of the industrial robot
-      physics::LinkPtr wrist3 = _model->GetLink("ur10::wrist_3");
+      physics::LinkPtr wrist3 = _model->GetLink("ur10a::ur10::wrist_3");
 
       // initialize the matrix to the proper size
       Ravelin::MatrixNd J(6, nDOF(_model));
