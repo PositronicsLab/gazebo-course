@@ -316,7 +316,7 @@ namespace gazebo
         dq2 = _dq;
         dq2 *= t;
 
-        // TODO: compute f(dq2) 
+        // TODO: compute f(theta + dq2) 
         math::Pose xprime;// = FILL ME IN
         Ravelin::VectorNd dx_prime = CalcOSDiff(xprime, target); 
         while (0.5*dx_prime.norm() > 0.5*dx.norm() + ALPHA*t*grad.dot(_dq))
@@ -332,7 +332,7 @@ namespace gazebo
           dq2 = _dq;
           dq2 *= t;
 
-          // TODO: recompute f(dq2)
+          // TODO: recompute f(theta + dq2)
           // xprime = FILL ME IN
 
           // recompute dx_prime
