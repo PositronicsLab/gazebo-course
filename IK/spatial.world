@@ -16,7 +16,7 @@
     <include>
       <uri>model://ur10</uri>
       <pose>0 0 2 0 0 0</pose>
-      <plugin name="coord_frame_spatial" filename="libcoord_frame_spatial.so"/>
+      <plugin name="IK" filename="libIKSpatial.so"/>
     </include>
 
     <!-- affix the ur10 to the world -->
@@ -31,7 +31,6 @@
           </limit>
         </axis>
       </joint>
-      <plugin name="IK" filename="libIKSpatial.so"/>
 </model>
 
   </world>
