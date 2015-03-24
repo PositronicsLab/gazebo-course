@@ -276,7 +276,9 @@ namespace gazebo
 
       // update qdes using the IK solution: this will allow the robot to go
       // to the IK solution (using the controller in OnUpdate(.)) 
-      _qdes += _dq;
+      _qdes[0] = theta[0];
+      _qdes[1] = theta[1];
+      _qdes[2] = theta[2];
 
       // indicate IK solution found
       std::cout << "IK solution found after " << restarts << " restarts and " << iter << " iterations" << std::endl;
