@@ -53,7 +53,7 @@ namespace gazebo
     {
       _output_current.open("track_sinusoidal.state");
       _output_des.open("track_sinusoidal.desired");
-      _output_des.open("track_sinusoidal.torque");
+      _output_torque.open("track_sinusoidal.torque");
     }
 
     // TODO: this way we only need to modify the inverse dynamics code once

@@ -53,7 +53,7 @@ namespace gazebo
     {
       _output_current.open("PD_hold.state");
       _output_des.open("PD_hold.desired");
-      _output_des.open("PD_hold.torque");
+      _output_torque.open("PD_hold.torque");
     }
 
     // this way we only need to modify the inverse dynamics code once

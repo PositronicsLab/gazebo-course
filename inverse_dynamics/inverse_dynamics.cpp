@@ -1,14 +1,14 @@
 // the inverse dynamics computation 
-public: void CalcInvDyn(double phi1, double phi2, double dphi1, double dphi2, double ddphi1_des, double ddphi2_des, double& tau1, double& tau2)
+public: void CalcInvDyn(double theta1, double theta2, double dtheta1, double dtheta2, double ddtheta1_des, double ddtheta2_des, double& tau1, double& tau2)
 {
   const double CHANGEME = 0.0/0.0;
 
-  // TODO: setup link lengths and masses
-  const double L1 = CHANGEME, L2 = CHANGEME;
-  const double M1 = CHANGEME, M2 = CHANGEME;
+  // setup link lengths and masses
+  const double L1 = 1.0, L2 = 1.0;
+  const double M1 = 1.0, M2 = 1.0;
 
-  // TODO: set acceleration due to gravity 
-  double G = CHANGEME;
+  // set acceleration due to gravity 
+  double G = 9.8;
 
   // TODO: put "C" code output from Mathematica here
   // tau1 = ...
